@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maximumSum(vector<int>& arr) {
+        int no_delete = arr[0];
+        int one_delete = 0;
+        int ans = arr[0];
+        for ( int i = 1; i < arr.size(); i++){
+
+            int prev_no_delete = no_delete;
+            int prev_one_delete = one_delete;
+
+            no_delete = max( prev_no_delete + arr[i] , arr[i]);
+               
+            one_delete = max (prev_one_delete + arr[i] , prev_no_delete);
+            ans = max( ans , max(one_delete , no_delete));
+        }
+        return ans;
+    }
+};
